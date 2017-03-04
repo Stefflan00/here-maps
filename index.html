@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="initial-scale=1.0, width=device-width" />
+<link rel="stylesheet" type="text/css" href="https://js.cit.api.here.com/v3/3.0/mapsjs-ui.css" />
+<script type="text/javascript" src="https://js.cit.api.here.com/v3/3.0/mapsjs-core.js"></script>
+<script type="text/javascript" src="https://js.cit.api.here.com/v3/3.0/mapsjs-service.js"></script>
+<script type="text/javascript" src="https://js.cit.api.here.com/v3/3.0/mapsjs-ui.js"></script>
+<script type="text/javascript" src="https://js.cit.api.here.com/v3/3.0/mapsjs-mapevents.js"></script>
+<script
+  src="https://code.jquery.com/jquery-1.12.4.min.js"
+  integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
+  crossorigin="anonymous"></script>
+</head>
+<body>
+  <div id="map" style="width: 100%; height: 100vh; background: grey" />
+  <script  type="text/javascript" charset="UTF-8" >
+
+  function getIcons() {
+    var greenIcon = `<svg width="80px" height="80px" viewBox="0 0 80 80" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+        <!-- Generator: Sketch 42 (36781) - http://www.bohemiancoding.com/sketch -->
+        <title>icon-parking-green</title>
+        <desc>Created with Sketch.</desc>
+        <defs>
+            <circle id="path-1" cx="40.5" cy="40.5" r="21.5"></circle>
+            <filter x="-50%" y="-50%" width="200%" height="200%" filterUnits="objectBoundingBox" id="filter-2">
+                <feOffset dx="0" dy="0" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+                <feGaussianBlur stdDeviation="2" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+                <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.5 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+            </filter>
+        </defs>
+        <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+            <g id="icon-parking-green">
+                <circle id="Oval-2" fill="#42CE53" opacity="0.170742754" cx="40" cy="40" r="40"></circle>
+                <circle id="Oval-2" fill="#42CE53" opacity="0.347599638" cx="40.5" cy="40.5" r="28.5"></circle>
+                <g id="Oval-2" opacity="0.63111413">
+                    <use fill="black" fill-opacity="1" filter="url(#filter-2)" xlink:href="#path-1"></use>
+                    <use fill="#42CE53" fill-rule="evenodd" xlink:href="#path-1"></use>
+                </g>
+            </g>
+        </g>
+
+    </svg>`;
+
+    var redIcon = `<svg width="80px" height="80px" viewBox="0 0 80 80" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+        <!-- Generator: Sketch 42 (36781) - http://www.bohemiancoding.com/sketch -->
+        <title>icon-parking-red</title>
+        <desc>Created with Sketch.</desc>
+        <defs>
+            <circle id="path-1" cx="40.5" cy="40.5" r="21.5"></circle>
+            <filter x="-50%" y="-50%" width="200%" height="200%" filterUnits="objectBoundingBox" id="filter-2">
+                <feOffset dx="0" dy="0" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+                <feGaussianBlur stdDeviation="2" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+                <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.5 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+            </filter>
+        </defs>
+        <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+            <g id="icon-parking-red">
+                <circle id="Oval-2" fill="#D0011B" opacity="0.170742754" cx="40" cy="40" r="40"></circle>
+                <circle id="Oval-2" fill="#D0011B" opacity="0.347599638" cx="40.5" cy="40.5" r="28.5"></circle>
+                <g id="Oval-2" opacity="0.63111413">
+                    <use fill="black" fill-opacity="1" filter="url(#filter-2)" xlink:href="#path-1"></use>
+                    <use fill="#D0011B" fill-rule="evenodd" xlink:href="#path-1"></use>
+                </g>
+            </g>
+        </g>
+    </svg>`;
+
+    var yellowIcon = `<svg width="80px" height="80px" viewBox="0 0 80 80" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+        <!-- Generator: Sketch 42 (36781) - http://www.bohemiancoding.com/sketch -->
+        <title>icon-parking-yellow</title>
+        <desc>Created with Sketch.</desc>
+        <defs>
+            <circle id="path-1" cx="40.5" cy="40.5" r="21.5"></circle>
+            <filter x="-50%" y="-50%" width="200%" height="200%" filterUnits="objectBoundingBox" id="filter-2">
+                <feOffset dx="0" dy="0" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+                <feGaussianBlur stdDeviation="2" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+                <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.5 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+            </filter>
+        </defs>
+        <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+            <g id="icon-parking-yellow">
+                <circle id="Oval-2" fill="#F8E81C" opacity="0.170742754" cx="40" cy="40" r="40"></circle>
+                <circle id="Oval-2" fill="#F8E81C" opacity="0.347599638" cx="40.5" cy="40.5" r="28.5"></circle>
+                <g id="Oval-2" opacity="0.63111413">
+                    <use fill="black" fill-opacity="1" filter="url(#filter-2)" xlink:href="#path-1"></use>
+                    <use fill="#F8E81C" fill-rule="evenodd" xlink:href="#path-1"></use>
+                </g>
+            </g>
+        </g>
+    </svg>`;
+    return [greenIcon,redIcon,yellowIcon];
+  }
+
+  function randomGeo(location, radius) {
+      var y0 = location.lat;
+      var x0 = location.lng;
+      var rd = radius / 111300;
+
+      var u = Math.random();
+      var v = Math.random();
+
+      var w = rd * Math.sqrt(u);
+      var t = 2 * Math.PI * v;
+      var x = w * Math.cos(t);
+      var y = w * Math.sin(t);
+
+      var xp = x / Math.cos(y0);
+
+      return {
+          'lat': y + y0,
+          'lng': xp + x0
+      };
+  }
+
+function addMarkersToMap(map) {
+  var locations = []
+  for (var i = 0; i < 10; i += 1) {
+    locations.push(randomGeo({lat:52.5160, lng:13.3779}, 500))
+  }
+  getNearestStreets(locations, map);
+}
+
+function getNearestStreets(locations, map) {
+  var url = "https://roads.googleapis.com/v1/nearestRoads?key=AIzaSyAx7kI-uvtJJ4kd8d0QYFG3M3uSsX2eU4A"
+  var points = "&points="
+  for (var i = 0; i < locations.length; i += 1 ) {
+    points = points + `${locations[i].lat},${locations[i].lng}|`
+  }
+  url = url + points.substring(0, points.length - 1);
+  $.ajax({
+  url: url,
+  })
+  .done(function(res) {
+    for (var i = 0; i < res.snappedPoints.length; i += 1){
+      var point = {lat: res.snappedPoints[i].location.latitude, lng: res.snappedPoints[i].location.longitude }
+      map.addObject(new H.map.Marker(point,{icon: genIcon()}));
+    }
+  })
+  .fail(function(err) {
+    console.log('Error: ' + err.status);
+  });
+}
+
+function genIcon(){
+  //Create the svg mark-up
+
+  var icons = getIcons()
+  var randNum = Math.floor(Math.random() * 3)
+  console.log(randNum);
+  return new H.map.Icon(icons[randNum])
+}
+
+
+
+/**
+ * Boilerplate map initialization code starts below:
+ */
+
+//Step 1: initialize communication with the platform
+var platform = new H.service.Platform({
+  app_id: 'DemoAppId01082013GAL',
+  app_code: 'AJKnXv84fjrb0KIHawS0Tg',
+  useCIT: true,
+  useHTTPS: true
+});
+var defaultLayers = platform.createDefaultLayers();
+
+//Step 2: initialize a map - this map is centered over Europe
+var map = new H.Map(document.getElementById('map'),
+  defaultLayers.normal.map,{
+  center: {lat:52.5160, lng:13.3779},
+  zoom: 15
+});
+
+//Step 3: make the map interactive
+// MapEvents enables the event system
+// Behavior implements default interactions for pan/zoom (also on mobile touch environments)
+var behavior = new H.mapevents.Behavior(new H.mapevents.MapEvents(map));
+
+// Create the default UI components
+var ui = H.ui.UI.createDefault(map, defaultLayers);
+
+// Now use the map as required...
+addMarkersToMap(map);
+  </script>
+</body>
+</html>
