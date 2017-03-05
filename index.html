@@ -145,7 +145,7 @@
 function addMarkersToMap(map) {
   var locations = []
   for (var i = 0; i < 10; i += 1) {
-    locations.push(randomGeo({lat:52.5160, lng:13.3779}, 500))
+    locations.push(randomGeo({lat:52.5200, lng:13.4050}, 500))
   }
   getNearestStreets(locations, map);
 }
@@ -198,7 +198,7 @@ var defaultLayers = platform.createDefaultLayers();
 //Step 2: initialize a map - this map is centered over Europe
 var map = new H.Map(document.getElementById('map'),
   defaultLayers.normal.map,{
-  center: {lat:52.5160, lng:13.3779},
+  center: {lat:52.5200, lng:13.4050},
   zoom: 15
 });
 
